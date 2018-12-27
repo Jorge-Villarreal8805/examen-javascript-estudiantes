@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<title>Examen 1 JavaScript: Lo Esencial</title>
+</head>
+<body>
+
+	<h1>Prueba de JSON con Estudiantes</h1>
+
+	<p id="estudiantes"></p>
+	<p id="promedio"></p>
+	<p id="notaMayor"></p>
+	<p id="notaMenor"></p>
+
+	<button onclick="mostrarestudiantes()">Mostrar Estudiantes</button>
+	<button onclick="mostrarpromedio()">Mostrar Promedio Estudiantes</button>
+	<button onclick="notamayor()">Mostrar Nota Mayor del Estudiantes</button>
+	<button onclick="notamenor()">mostrar Nota Menor del estudiantes</button>
+
+	<script type="text/javascript">
+		
+		var estudiantes = [
+		{
+			"codigo": "001",
+			"nombre": "Juan Carlos",
+			"nota": 3.8
+		}, {
+			"codigo": "002",
+			"nombre": "Jorge Villarreal",
+			"nota": 4.5
+		}, {
+			"codigo": "003",
+			"nombre": "Jhon Castro",
+			"nota": 3.0
+		}, {
+			"codigo": "004",
+			"nombre": "Martha Luna",
+			"nota": 4.3
+		}, {
+			"codigo": "005",
+			"nombre": "Maria Hernandez",
+			"nota": 3.9
+		}, {
+			"codigo": "006",
+			"nombre": "Marisela Pineda",
+			"nota": 4.6
+		}, {
+			"codigo": "007",
+			"nombre": "Jessica Lozada",
+			"nota": 4.7
+		}, {
+			"codigo": "008",
+			"nombre": "Sofia Yunda",
+			"nota": 3.2
+		}, {
+			"codigo": "009",
+			"nombre": "Hermes Vargas",
+			"nota": 3.9
+		}, 
+		{
+			"codigo": "010",
+			"nombre": "Julian Martinez",
+			"nota": 4.1
+		}
+		];
+
+		function mostrarEstudiante(json) {
+
+			var out = "---------------------Lista de Estudiantes---------------------<br>";
+
+			var i;
+
+			for (i = 0; i < json.length; i++) {
+				out += "Codigo: " + json[i].codigo + " ---> " + "Nombre: " + json[i].nombre + " ---> " + "Nota: " + json[i].nota + "<br>";
+			}
+			document.getElementById("estudiantes").innerHTML = out;
+		}
+
+		function mostrarPromedio(json) {
+			var out = "---------------------Promedio de Notas---------------------<br>";
+
+			var i, nota = 0;
+
+			for (i = 0; i < json.length; i++) {
+			nota += json[i].nota;
+			}
+			out += (nota/json.length).toString(); 
+			document.getElementById("promedio").innerHTML = out;
+		}
+
+		function notaMayor() {
+			var out = "--------------------Estudiante con la Nota Mayor es:--------------------<br>"
+			var indiceNotaMayor = 0;
+			var notaMayor = estudiantes[indiceNotaMayor].nota;
+
+			for (var i = 1; i < estudiantes.length; i++){
+				if(estudiantes[i].nota > notaMayor){
+					notaMayor = estudiantes[i].nota;
+					indiceNotaMayor = i;
+					
+				}
+				
+			}
+			document.getElementById("notaMayor").innerHTML = out + estudiantes[indiceNotaMayor].nombre + " --> Nota: " + notaMayor;
+
+		}
+
+		function notaMenor() {
+			var out = "--------------------Estudiante con la Nota Menor es:--------------------<br>"
+			var indiceNotaMenor = 0;
+			var nota_Menor = estudiantes[indiceNotaMenor].nota;
+			var i;
+
+			for (i = 1; i < estudiantes.length; i++){
+				if(estudiantes[i].nota < nota_Menor){
+					nota_Menor = estudiantes[i].nota;
+					indiceNotaMenor = i;
+					
+				}
+			}
+			document.getElementById("notaMenor").innerHTML = out + estudiantes[indiceNotaMenor].nombre + " --> Nota: " + nota_Menor;
+
+		}
+
+		function mostrarestudiantes() {
+			mostrarEstudiante(estudiantes);
+		}
+
+		function mostrarpromedio() {
+			mostrarPromedio(estudiantes)
+		}
+
+		function notamayor() {
+			notaMayor(estudiantes)
+		}
+
+		function notamenor() {
+			notaMenor(estudiantes)
+		}
+
+
+	</script>
+
+</body>
+</html>
